@@ -1,0 +1,36 @@
+newmtl grass_Mat
+Ni 1.6
+Ka 0 0 0
+map_Ke grass_in_a_pot_2/grass_glow.png
+d 1
+Kd 0 0 0
+adobe_map_normal grass_in_a_pot_2/grass_normal.png
+map_d grass_in_a_pot_2/grass_opacity.png
+Tr 0
+illum 7
+Ks 1 1 1
+adobe_translucence 0.0
+adobe_map_roughness grass_in_a_pot_2/grass_roughness.png
+adobe_interior_color 1.0 1.0 1.0
+adobe_density 0.0
+map_Pm grass_in_a_pot_2/grass_metallic.png
+Ns 16
+map_Kd grass_in_a_pot_2/grass_baseColor.png
+newmtl pot_Mat
+Ni 1.6
+Ka 0 0 0
+map_Ke grass_in_a_pot_2/pot_glow.png
+d 1
+Kd 0 0 0
+adobe_map_normal grass_in_a_pot_2/pot_normal.png
+map_d grass_in_a_pot_2/pot_opacity.png
+Tr 0
+illum 7
+Ks 1 1 1
+adobe_translucence 0.0
+adobe_map_roughness grass_in_a_pot_2/pot_roughness.png
+adobe_interior_color 1.0 1.0 1.0
+adobe_density 0.0
+map_Pm grass_in_a_pot_2/pot_metallic.png
+Ns 16
+map_Kd grass_in_a_pot_2/pot_baseColor.png

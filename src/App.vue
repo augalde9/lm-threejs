@@ -1,36 +1,28 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="black"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-btn
-          text
-        >
-          <span class="mr-2">LavaMap ThreeJS Assignment by Alejandro Ugalde</span>
-        </v-btn>
-      </div>
-
-      <v-spacer></v-spacer>
-
-    </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
+      <AppBar/>
+      <FloatingNavigation/>
+      <Main3DCanvas/>
     </v-main>
+
+
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import AppBar from './components/AppBar';
+import FloatingNavigation from './components/FloatingNavigation';
+import Main3DCanvas from './components/Main3DCanvas';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    AppBar,
+    FloatingNavigation,
+    Main3DCanvas,
   },
 
   data: () => ({
