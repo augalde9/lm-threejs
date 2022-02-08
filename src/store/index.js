@@ -160,7 +160,7 @@ const store = new Vuex.Store({
 
       console.log(payload)
       if (payload === "Cube") {
-        geometry = new THREE.BoxGeometry(2,2,2)
+        geometry = new THREE.BoxBufferGeometry(2,2,2)
         ghostGeometry = geometry
         material = new THREE.MeshBasicMaterial( { color: materialColor } )
         ghostMaterial = new THREE.MeshBasicMaterial({color: materialColor, opacity: 0.5, transparent: true})
@@ -169,7 +169,7 @@ const store = new Vuex.Store({
         ghostMesh = new THREE.Mesh(ghostGeometry, ghostMaterial)
         ghostMesh.name = "Cube Ghost"
       } else if (payload === "Cone") {
-        geometry = new THREE.ConeGeometry(1,2,16)
+        geometry = new THREE.ConeBufferGeometry(1,2,16)
         ghostGeometry = geometry
         material = new THREE.MeshBasicMaterial( { color: materialColor } )
         ghostMaterial = new THREE.MeshBasicMaterial({color: materialColor, opacity: 0.5, transparent: true})
@@ -178,7 +178,7 @@ const store = new Vuex.Store({
         ghostMesh = new THREE.Mesh(ghostGeometry, ghostMaterial)
         ghostMesh.name = "Cone Ghost"
       } else if (payload === "Cylinder") {
-        geometry = new THREE.CylinderGeometry(1,1,2)
+        geometry = new THREE.CylinderBufferGeometry(1,1,2)
         ghostGeometry = geometry
         material = new THREE.MeshBasicMaterial( { color: materialColor } )
         ghostMaterial = new THREE.MeshBasicMaterial({color: materialColor, opacity: 0.5, transparent: true})
@@ -255,14 +255,26 @@ const store = new Vuex.Store({
     },
     moveSelectedObject(state, payload) {
       var degrees = 45 * Math.PI / 180
+
+      var worldDirection = new THREE.Vector3()
+      state.mainCamera.getWorldDirection(worldDirection)
+      worldDirection.y = 0
+      worldDirection.normalize()
+
       if(payload === "Move Up") {
-        state.selectedObject.translateZ(-.1)
+        // state.selectedObject.translateZ(-.1)
+        state.selectedObject.position.addScaledVector(worldDirection, .1)
       } else if(payload === "Move Down") {
-        state.selectedObject.translateZ(.1)
+        // state.selectedObject.translateZ(.1)
+        state.selectedObject.position.addScaledVector(worldDirection, -.1)
       } else if(payload === "Move Left") {
-        state.selectedObject.translateX(-.1)
+        // state.selectedObject.translateX(-.1)
+        worldDirection.cross(state.mainCamera.up)
+        state.selectedObject.position.addScaledVector(worldDirection, -.1)
       } else if(payload === "Move Right") {
-        state.selectedObject.translateX(.1)
+        // state.selectedObject.translateX(.1)
+        worldDirection.cross(state.mainCamera.up)
+        state.selectedObject.position.addScaledVector(worldDirection, .1)
       } else if(payload === "Rotate Left 45") {
         state.selectedObject.rotateY(degrees)
       } else if(payload === "Rotate Right 45") {
