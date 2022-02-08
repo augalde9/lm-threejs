@@ -158,7 +158,6 @@ const store = new Vuex.Store({
       mesh,
       ghostMesh
 
-      console.log(payload)
       if (payload === "Cube") {
         geometry = new THREE.BoxBufferGeometry(2,2,2)
         ghostGeometry = geometry
@@ -201,7 +200,6 @@ const store = new Vuex.Store({
       const intersects = state.raycaster.intersectObjects( state.sceneObjects, false )
 
       if(intersects.length > 0) {
-        // console.log("Intersects on Move!")
 
         const intersect = intersects[0]
 
@@ -225,12 +223,10 @@ const store = new Vuex.Store({
         const intersects = state.raycaster.intersectObjects( state.sceneObjects, false )
   
         if(intersects.length > 0) {
-          console.log("Intersects on Down!")
   
           const intersect = intersects[0]
   
           if(state.currentObject !== null) {
-            console.log("Current Object Found")
             state.currentObject.position.copy(intersect.point).add(intersect.face.normal)
             state.currentObject.position.divideScalar(2).floor().multiplyScalar(2).addScalar(1)
             state.mainScene.add(state.currentObject)
@@ -285,8 +281,7 @@ const store = new Vuex.Store({
         state.selectedObject = null
       }
     },
-    deleteSelectedObject(state, payload) {
-      console.log(payload)
+    deleteSelectedObject(state) {
       state.mainScene.remove(state.selectedObject.uuid)
       state.sceneObjects.splice(state.sceneObjects.indexOf(state.selectedObject), 1)
     },
